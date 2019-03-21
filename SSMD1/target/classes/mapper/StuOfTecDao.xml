@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.StuOfTecDao">
+<select id="getStusOfTec" resultMap="resultTeacherMap" >
+		select * from teacher where user_id=#{userid}
+	</select>
+	<resultMap type="dto.StuOfTec" id="resultTeacherMap">
+		<id column="t.id" property="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="name" column="name"/>
+		<result property="cls" column="cls"/>
+		<collection property="students" column="cls" select="dto.ScoreOfStuDao.getstuscore" >
+		</collection>
+	</resultMap>
+	
+</mapper>

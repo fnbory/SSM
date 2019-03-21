@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ScoreDao">
+	<select id="getScore" resultType="Score" parameterType="String">
+		select * from score where user_id=#{userId};
+	</select>
+	<update id="updateScore" parameterType="Score">
+		update score set math_Score=#{score.mathScore},java_Score=#{score.javaScore},html_Score=#{score.htmlScore} where user_id=#{score.userId}
+	</update>
+</mapper>
