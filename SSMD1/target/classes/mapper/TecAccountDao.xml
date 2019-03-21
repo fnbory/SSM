@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TecAccountDao">
+	<resultMap type="dto.TecAccount" id="tecaccsmap">
+		<id column="id" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="password" property="password"/>
+		<result column="person" property="person"/>
+		<association property="teacher" column="user_id" select="dao.TeacherDao.getTeacher">
+		</association>
+	</resultMap>
+	<select id="gettecaccounts" resultMap="tecaccsmap">
+		select * from account where person=#{person}
+	</select>
+	<select id="gettecaccount" resultMap="tecaccsmap">
+		select * from account where user_id=#{user_id}
+	</select>
+	<update id="updatetecacct" parameterType="dto.TecAccount">
+		update account set password =#{account.password} where user_id=#{account.userId}
+	</update>
+	
+	
+</mapper>
